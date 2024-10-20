@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import {
+  AdditionalItem,
+  AdditionalItems,
+  MenuContainer,
+  MenuItem,
+  MenuItems,
+  SideMenuContainer,
+} from "./StyledSideMenu";
+import Image from "components/Image/Image";
+
+const menuItems = [
+  { icon: "search.png", label: "Search" },
+  { icon: "home.png", label: "Home" },
+  { icon: "tv_shows.png", label: "TV Shows" },
+  { icon: "movies.png", label: "Movies" },
+  { icon: "genres.png", label: "Genres" },
+  { icon: "history.png", label: "Watch Later" },
+];
+
+const additionalItems = [
+  { label: "Language" },
+  { label: "Get Help" },
+  { label: "Exit" },
+];
+
+const SideMenu: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <SideMenuContainer
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <MenuContainer
+        initial={{ width: "50px" }}
+        animate={isOpen ? { width: "200px" } : { width: "50px" }}
+        transition={{ type: "tween", duration: 0.3 }}
+      >
+        <MenuItems>
+          {menuItems.map((item, index) => (
+            <MenuItem key={index} visible={isOpen}>
+              {item.icon && (
+                <Image
+                  imageSrc={`${process.env.PUBLIC_URL}/assets/icons/${item.icon}`}
+                  alt={item.icon}
+                />
+              )}
+              {isOpen && (
+                <span style={{ marginLeft: "10px", whiteSpace: "nowrap" }}>
+                  {item.label}
+                </span>
+              )}
+            </MenuItem>
+          ))}
+        </MenuItems>
+        <AdditionalItems>
+          {additionalItems.map((item, index) => (
+            <AdditionalItem key={index}>
+              {isOpen && <span>{item.label}</span>}
+            </AdditionalItem>
+          ))}
+        </AdditionalItems>
+      </MenuContainer>
+    </SideMenuContainer>
+  );
+};
+
+export default SideMenu;
