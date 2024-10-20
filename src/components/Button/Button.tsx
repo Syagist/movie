@@ -23,22 +23,8 @@ const Button: React.FC<ButtonProps> = ({
   styles = {},
 }) => {
   return (
-    <StyledButton
-      onClick={onClick}
-      paddingX={styles.paddingX}
-      paddingY={styles.paddingY}
-      backgroundcolor={styles.backgroundcolor}
-      gradient={styles.gradient}
-      fontSize={styles.fontSize}
-      color={styles.color}
-      iconSize={styles.iconSize}
-    >
-      {iconName && (
-        <img
-          src={`${process.env.PUBLIC_URL}/assets/icons/${iconName}`}
-          alt={iconName}
-        />
-      )}
+    <StyledButton onClick={onClick} {...styles}>
+      {iconName && <img src={`/assets/icons/${iconName}`} alt={iconName} />}
       {text && <span>{text}</span>}
     </StyledButton>
   );

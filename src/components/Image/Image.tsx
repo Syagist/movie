@@ -5,7 +5,7 @@ import {
 } from "./StyledImage";
 
 interface ImageProps {
-  imageSrc: string | undefined;
+  imageSrc?: string;
   alt: string;
   isLoading?: boolean;
   error?: string | null;
@@ -16,7 +16,6 @@ const Image: React.FC<ImageProps> = ({ imageSrc, alt, error, isLoading }) => {
     <>
       {isLoading && (
         <StyledImagePlaceholder>
-          {" "}
           <div className="loader">
             <div></div>
             <div></div>

@@ -6,7 +6,7 @@ const useLocalImageFetch = (imageName: string, imagePath = "assets/images") => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const imageUrl = `${process.env.PUBLIC_URL}/${imagePath}/${imageName}`;
+    const imageUrl = `${imagePath}/${imageName}`;
 
     const img = new Image();
     img.src = imageUrl;

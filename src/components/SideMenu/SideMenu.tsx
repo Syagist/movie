@@ -8,21 +8,7 @@ import {
   SideMenuContainer,
 } from "./StyledSideMenu";
 import Image from "components/Image/Image";
-
-const menuItems = [
-  { icon: "search.png", label: "Search" },
-  { icon: "home.png", label: "Home" },
-  { icon: "tv_shows.png", label: "TV Shows" },
-  { icon: "movies.png", label: "Movies" },
-  { icon: "genres.png", label: "Genres" },
-  { icon: "history.png", label: "Watch Later" },
-];
-
-const additionalItems = [
-  { label: "Language" },
-  { label: "Get Help" },
-  { label: "Exit" },
-];
+import { additionalMenuItems, menuItems } from "constants/appConstants";
 
 const SideMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +36,7 @@ const SideMenu: React.FC = () => {
             <MenuItem key={index} visible={isOpen}>
               {item.icon && (
                 <Image
-                  imageSrc={`${process.env.PUBLIC_URL}/assets/icons/${item.icon}`}
+                  imageSrc={`/assets/icons/${item.icon}`}
                   alt={item.icon}
                 />
               )}
@@ -63,7 +49,7 @@ const SideMenu: React.FC = () => {
           ))}
         </MenuItems>
         <AdditionalItems>
-          {additionalItems.map((item, index) => (
+          {additionalMenuItems.map((item, index) => (
             <AdditionalItem key={index}>
               {isOpen && <span>{item.label}</span>}
             </AdditionalItem>
